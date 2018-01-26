@@ -27,7 +27,6 @@ function showMenu() {
       viewLowInventory()
     }
     if (answers.choice === 'Add to Inventory') {
-      console.log('add to inventory chosen')
       addToInventory()
     }
     if (answers.choice === 'Add New Product') {
