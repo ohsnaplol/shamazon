@@ -24,7 +24,7 @@ function showMenu() {
       viewProducts()
     }
     if (answers.choice === 'View Low Inventory') {
-
+      viewLowInventory()
     }
     if (answers.choice === 'Add to Inventory') {
 
@@ -45,5 +45,19 @@ function viewProducts(tableName) {
       console.log(`${result[i].item_id} | ${result[i].product_name} | $${result[i].price} | ${result[i].stock_quantity} available`)
     }
     showMenu()
+  })
+}
+
+function viewLowInventory() {
+  connection.query(`SELECT * FROM products WHERE stock_quantity < 5`, function(error, result) {
+    if (error) throw error
+    // If there is no low inventory,
+    if (!result.length) {
+      console.log('empty!')
+    } else {
+      for (var i = 0; i < result.length; i++) {
+        console.log(`${result[i].item_id} | ${result[i].product_name} | $${result[i].price} | ${result[i].stock_quantity} available`)
+      }
+    }
   })
 }
