@@ -39,7 +39,7 @@ function showMenu() {
   })
 }
 
-function viewProducts(tableName) {
+function viewProducts() {
   connection.query(`SELECT * FROM products`, function(error, result) {
     if (error) throw error
     for (var i = 0; i < result.length; i++) {
