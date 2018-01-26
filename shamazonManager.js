@@ -54,7 +54,7 @@ function viewLowInventory() {
     if (error) throw error
     // If there is no low inventory,
     if (!result.length) {
-      console.log('empty!')
+      console.log('No products in inventory have a quantity less than 5')
     } else {
       for (var i = 0; i < result.length; i++) {
         console.log(`${result[i].item_id} | ${result[i].product_name} | $${result[i].price} | ${result[i].stock_quantity} available`)
@@ -93,5 +93,29 @@ function addToInventory() {
 }
 
 function addNewProduct() {
-
+  inquirer.prompt([
+    {
+      type: 'input',
+      name: 'product_name',
+      message: 'Enter the name of the new product'
+    },
+    {
+      type: 'input',
+      name: 'department_name',
+      message: 'Enter the department name'
+    },
+    {
+      type: 'input',
+      name: 'price',
+      message: 'Enter the price of the item'
+    },
+    {
+      type: 'input',
+      name: 'quantity',
+      message: 'How many do you have of this item?'
+    },
+  ]).then(function(answers) {
+    connection.query(`INSERT INTO products(product_name, department_name, price, stock_quantity) VALUES('${answers.product_name}', '${answers.department_name}', ${answers.price}, ${answers.quantity})`)
+  })
+  showMenu()
 }
