@@ -8,3 +8,29 @@ var connection = mysql.createConnection({
   password: '',
   database: 'shamazon_db'
 })
+
+showMenu()
+
+function showMenu() {
+  inquirer.prompt([
+    {
+      type: 'list',
+      name: 'choice',
+      message: `Manager View`,
+      choices: ['View Products on Sale', 'View Low Inventory', 'Add to Intentory', 'Add to Product']
+    }
+  ]).then(function(answers) {
+    if (answers.choice === 'View Products on Sale') {
+
+    }
+    if (answers.choice === 'View Low Inventory') {
+
+    }
+    if (answers.choice === 'Add to Inventory') {
+
+    }
+    if (answers.choice === 'Add to Product') {
+
+    }
+  })
+}
