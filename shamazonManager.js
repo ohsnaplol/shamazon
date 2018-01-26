@@ -17,7 +17,7 @@ function showMenu() {
       type: 'list',
       name: 'choice',
       message: `Manager View`,
-      choices: ['View Products on Sale', 'View Low Inventory', 'Add to Intentory', 'Add to Product']
+      choices: ['View Products on Sale', 'View Low Inventory', 'Add to Intentory', 'Add to Product', 'Quit']
     }
   ]).then(function(answers) {
     if (answers.choice === 'View Products on Sale') {
@@ -31,6 +31,9 @@ function showMenu() {
     }
     if (answers.choice === 'Add to Product') {
 
+    }
+    if (answers.choice === 'Quit') {
+      return
     }
   })
 }
