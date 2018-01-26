@@ -59,5 +59,10 @@ function viewLowInventory() {
         console.log(`${result[i].item_id} | ${result[i].product_name} | $${result[i].price} | ${result[i].stock_quantity} available`)
       }
     }
+    showMenu()
   })
+}
+
+function addToInventory() {
+
 }
