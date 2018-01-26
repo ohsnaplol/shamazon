@@ -21,7 +21,7 @@ function showMenu() {
     }
   ]).then(function(answers) {
     if (answers.choice === 'View Products on Sale') {
-
+      viewProducts()
     }
     if (answers.choice === 'View Low Inventory') {
 
@@ -33,7 +33,17 @@ function showMenu() {
 
     }
     if (answers.choice === 'Quit') {
-      return
+      connection.end()
     }
+  })
+}
+
+function viewProducts(tableName) {
+  connection.query(`SELECT * FROM products`, function(error, result) {
+    if (error) throw error
+    for (var i = 0; i < result.length; i++) {
+      console.log(`${result[i].item_id} | ${result[i].product_name} | $${result[i].price} | ${result[i].stock_quantity} available`)
+    }
+    showMenu()
   })
 }
