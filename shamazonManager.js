@@ -17,7 +17,7 @@ function showMenu() {
       type: 'list',
       name: 'choice',
       message: `Manager View`,
-      choices: ['View Products on Sale', 'View Low Inventory', 'Add to Inventory', 'Add to Product', 'Quit']
+      choices: ['View Products on Sale', 'View Low Inventory', 'Add to Inventory', 'Add New Product', 'Quit']
     }
   ]).then(function(answers) {
     if (answers.choice === 'View Products on Sale') {
@@ -30,8 +30,8 @@ function showMenu() {
       console.log('add to inventory chosen')
       addToInventory()
     }
-    if (answers.choice === 'Add to Product') {
-
+    if (answers.choice === 'Add New Product') {
+      addNewProduct()
     }
     if (answers.choice === 'Quit') {
       connection.end()
@@ -86,8 +86,12 @@ function addToInventory() {
       }
     ]).then(function(answers) {
       console.log(`You chose ${answers.new_product} with quantity ${answers.quantity}`)
-      connection.query(`UPDATE products SET stock_quantity = stock_quantity + ${answers.quantity} WHERE product_name = ${answers.new_product}`) // updates product by name instead of by id. This should be changed
+      connection.query(`UPDATE products SET stock_quantity = stock_quantity + ${answers.quantity} WHERE product_name = '${answers.new_product}'`) // updates product by name instead of by id. This should be changed
       showMenu()
     })
   })
+}
+
+function addNewProduct() {
+
 }
