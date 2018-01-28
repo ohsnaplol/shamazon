@@ -115,6 +115,6 @@ function addNewProduct() {
     },
   ]).then(function(answers) {
     connection.query(`INSERT INTO products(product_name, department_name, price, stock_quantity) VALUES('${answers.product_name}', '${answers.department_name}', ${answers.price}, ${answers.quantity})`)
+    showMenu()
   })
-  showMenu()
 }
